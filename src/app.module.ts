@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TasksModule } from './tasks/tasks.module';
-import { TestModule } from './test/test.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeorm.config';
 import { DriverModule } from './driver/driver.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [TasksModule, DriverModule, TestModule,TypeOrmModule.forRoot(typeOrmConfig)],
+  imports: [ DriverModule, PrismaModule],
 })
 export class AppModule {}

@@ -29,10 +29,10 @@ model Customer {
 
 model Driver {
   id_driver    Int    @id()
-  district     String
-  driver_name  String
-  address      String
-  phone_number String
-  driver_type  String
-  driver_dni   String
+  // district     String
+  // driver_name  String
+  // address      String
+  // phone_number String
+  // driver_type  String
+  // driver_dni   String
 }
