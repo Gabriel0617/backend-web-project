@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateDriverDTO, CreatePermanentDriverDTO,CreateReserveDriverDTO } from './dto/create_driver.dto';
+import { CreateDriverDTO, CreatePermanentDriverDTO,CreateReserverDriverDTO } from './dto/create_driver.dto';
 
 
 

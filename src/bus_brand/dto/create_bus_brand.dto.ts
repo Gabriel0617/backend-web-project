@@ -1,4 +1,4 @@
-import { car, reserve_driver } from "@prisma/client";
+import { car, reserver_driver } from "@prisma/client";
 
 
 export interface CreateBusBrandDTO{
@@ -6,5 +6,5 @@ export interface CreateBusBrandDTO{
     fuel_type: string,
     fuel_consumption: number,
     brand_cars: car[],
-    reserve_drivers: reserve_driver[]
+    reserve_drivers: reserver_driver[]
 }
