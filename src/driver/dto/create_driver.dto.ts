@@ -1,3 +1,18 @@
 export interface CreateDriverDTO {
-    id_driver: number
+    district: string,
+    driver_name: string,
+    address: string
+    phone_number: string
+    driver_type: string,
+    driver_dni: string
+   
 }
+
+export interface CreatePermanentDriverDTO extends CreateDriverDTO{
+    id_car: number
+}
+
+export interface CreateReserverDriverDTO extends CreateDriverDTO{
+    id_brand: number
+}
+

@@ -1,0 +1,17 @@
+import { Body, Controller, Post } from '@nestjs/common';
+import { BusBrandService } from './bus_brand.service';
+import { BusBrandPipe } from './bus_brand.pipe';
+import { CreateBusBrandDTO } from './dto/create_bus_brand.dto';
+
+@Controller('bus-brand')
+export class BusBrandController {
+    constructor(
+        private busBrandService: BusBrandService
+      ) { }
+
+      @Post()
+  createDriver(@Body(new BusBrandPipe()) input: CreateBusBrandDTO){
+    console.log(input);
+    return this.busBrandService.createBusBrand(input)
+  }
+}
