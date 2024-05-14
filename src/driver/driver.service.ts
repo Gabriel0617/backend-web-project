@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateDriverDTO, CreatePermanentDriverDTO,CreateReserverDriverDTO } from './dto/create_driver.dto';
+import { CreateDriverDTO, CreatePermanentDriverDTO, CreateReserverDriverDTO } from './dto/create_driver.dto';
 
 
 
@@ -21,12 +21,12 @@ export class DriverService {
     const new_driver = await this.createDriver(driverData);
 
     return this.prismaService.permanent_driver.create({
-   data:{
-    id_driver: new_driver.id_driver,
-    id_car
-    
-   }
-})
+      data: {
+        id_driver: new_driver.id_driver,
+        id_car
+
+      }
+    })
   }
 
   async createReserverDriver(data: CreateReserverDriverDTO) {
@@ -34,12 +34,12 @@ export class DriverService {
     const new_driver = await this.createDriver(driverData);
 
     return this.prismaService.reserver_driver.create({
-   data:{
-    id_driver: new_driver.id_driver,
-    id_brand
-    
-   }
-})
+      data: {
+        id_driver: new_driver.id_driver,
+        id_brand
+
+      }
+    })
   }
 
 }
