@@ -10,10 +10,10 @@ export class CarController {
       ) { }
 
       @Post()
-  createCar(@Body(new CarPipe()) input: CreateCarDTO){
+  createCar(@Body(new CarPipe()) data: CreateCarDTO){
    
     
-    return this.carService.createCar(input)
+    return this.carService.createCar(data)
   }
 
   @Get()

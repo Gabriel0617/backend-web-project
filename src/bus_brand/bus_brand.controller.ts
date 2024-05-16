@@ -10,8 +10,8 @@ export class BusBrandController {
       ) { }
 
       @Post()
-  createDriver(@Body(new BusBrandPipe()) input: CreateBusBrandDTO){
-    console.log(input);
-    return this.busBrandService.createBusBrand(input)
+  createDriver(@Body(new BusBrandPipe()) data: CreateBusBrandDTO){
+  
+    return this.busBrandService.createBusBrand(data)
   }
 }
