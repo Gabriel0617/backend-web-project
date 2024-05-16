@@ -10,6 +10,7 @@ describe('UserController', () => {
     }).compile();
 
     controller = module.get<UserController>(UserController);
+    
   });
 
   it('should be defined', () => {
