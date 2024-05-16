@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBusBrandDTO } from './dto/create_bus_brand.dto';
+import { async } from 'rxjs';
 
 @Injectable()
 export class BusBrandService {
@@ -18,4 +19,10 @@ export class BusBrandService {
       }
     })
   }
+
+
+  async findAll(){
+    return this.prismaService.bus_brand.findMany(); // Utiliza el método find() del repositorio para obtener todas las marcas de autobuses
+  }
+
 }
