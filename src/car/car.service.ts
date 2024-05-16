@@ -30,11 +30,11 @@ export class CarService {
     return this.prismaService.car.delete({where: {id_car}});
   }
 
-  // async updateCarById(id_car:number, data: CreateCarDTO){
-  //   const findCar = await this.findCarById(id_car);
-  //   if(!findCar) throw new HttpException('Car Not Found', 404){
-      
-  //   }
-  // }
+  async updateCarById(id_car:number, data: CreateCarDTO){
+    const findCar = await this.findCarById(id_car);
+    if(!findCar) throw new HttpException('Car Not Found', 404);
+      return this.prismaService.car.update({where: {id_car}, data})
+    
+  }
 }
 
