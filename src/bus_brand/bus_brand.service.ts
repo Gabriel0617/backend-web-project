@@ -8,14 +8,19 @@ export class BusBrandService {
 
   async createBusBrand(data: CreateBusBrandDTO) {
 
-    return this.prismaService.bus_brand.create({
-      data: {
-        chairs_count: data.chairs_count,
-        fuel_type: data.fuel_type,
-        brand_cars: {},
-        fuel_consumption: data.fuel_consumption,
-        reserve_drivers: {}
-      }
-    })
+    return this.prismaService.bus_brand.create({data})
+  }
+
+
+  async findBusBrands(){
+    return this.prismaService.bus_brand.findMany();
+  }
+
+  async findBusBrandById(id_brand : number){
+    return this.prismaService.bus_brand.findUnique({where:{id_brand}});
+  }
+
+  async deleteBrandById(id_brand : number){
+    return this.prismaService.bus_brand.delete({where:{id_brand}});
   }
 }

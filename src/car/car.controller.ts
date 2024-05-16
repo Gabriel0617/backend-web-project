@@ -17,7 +17,7 @@ export class CarController {
   }
 
   @Get()
-  getAllCars(@Body(new CarPipe())input: CreateCarDTO){
+  getAllCars(){
     return this.carService.findCars();
   }
 

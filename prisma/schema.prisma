@@ -12,6 +12,7 @@ model bus_brand {
   chairs_count     Int
   fuel_type        String
   fuel_consumption Float
+  brand_name       String
   brand_cars       car[]
   reserve_drivers reserver_driver[]
 }
