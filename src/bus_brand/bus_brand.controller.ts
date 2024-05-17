@@ -29,7 +29,9 @@ export class BusBrandController {
   @Delete(':id')
   deleteBrandById(@Param('id', ParseIntPipe) id_brand : number){
     return this.busBrandService.deleteBrandById(id_brand);
+    
   }
+
 
   @Patch(':id')
   updateCarById(@Param('id', ParseIntPipe)id_brand: number,@Body() data: CreateBusBrandDTO){
