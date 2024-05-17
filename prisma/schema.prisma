@@ -8,13 +8,13 @@ datasource db {
 }
 
 model bus_brand {
-  id_brand         Int     @id @default(autoincrement())
+  id_brand         Int               @id @default(autoincrement())
   chairs_count     Int
   fuel_type        String
   fuel_consumption Float
   brand_name       String
   brand_cars       car[]
-  reserve_drivers reserver_driver[]
+  reserve_drivers  reserver_driver[]
 }
 
 model car {
@@ -32,42 +32,37 @@ model car {
 }
 
 model customer {
-  id_customer        Int       @id @default(autoincrement())
-  customer_name      String
-  customer_country   String
-  custormer_surnames String
-  customer_cars      car[]
-  requests           request[]
+  id_customer       Int       @id @default(autoincrement())
+  customer_name     String
+  customer_country  String
+  customer_surnames String
+  customer_id       String    @unique
+  customer_cars     car[]
+  requests          request[]
 }
 
 model driver {
-  id_driver    Int         @id() @default(autoincrement())
+  id_driver    Int    @id() @default(autoincrement())
   district     String
   driver_name  String
   address      String
   phone_number String
   driver_type  String
-  driver_dni   String      @unique
+  driver_dni   String @unique
 }
 
 model permanent_driver {
-  id_driver            Int @id 
-  
+  id_driver Int @id
+
   id_car               Int
   permanent_driver_car car @relation(fields: [id_car], references: [id_car])
 }
 
 model reserver_driver {
-  id_driver            Int @id 
-  id_brand               Int
- reserver_driver_brand bus_brand @relation(fields: [id_brand], references: [id_brand], onDelete: Cascade, onUpdate: Cascade)
-
+  id_driver             Int       @id
+  id_brand              Int
+  reserver_driver_brand bus_brand @relation(fields: [id_brand], references: [id_brand], onDelete: Cascade, onUpdate: Cascade)
 }
-
-
-
-
-
 
 model request {
   id_request       Int      @id @default(autoincrement())
@@ -75,8 +70,8 @@ model request {
   request_car      car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
   id_customer      Int
   request_customer customer @relation(fields: [id_customer], references: [id_customer], onDelete: Cascade, onUpdate: Cascade)
-
-  request_services service[]
+  id_service       Int
+ 
 }
 
 model road_map {
@@ -89,52 +84,54 @@ model road_map {
 }
 
 model role {
-  id_role    Int    @id
+  id_role    Int    @id @default(autoincrement())
   role_name  String
   role_users user[]
 }
 
 model service {
-  id_service       Int       @id @default(autoincrement())
-  service_name     String
-  planned_km       Decimal
-  planned_fuel     Decimal
-  service_code     String
-  service_type     service_type
-  service_requests request[]
+  id_service      Int          @id @default(autoincrement())
+  service_name    String
+  planned_km      Decimal
+  planned_fuel    Decimal
+  service_code    String
+  service_type    service_type
+  id_request     Int
+  
+
   planned_service planned_service?
   special_service special_service?
 }
 
-model planned_service{
-  id_service Int @id
-  cust_req_number Int
-  pickup_location String
-  pickud_time DateTime
+model planned_service {
+  id_service       Int      @id
+  cust_req_number  Int
+  pickup_location  String
+  pickud_time      DateTime
   id_tourist_group Int
-  
+
   service service @relation(fields: [id_service], references: [id_service])
 }
 
-model special_service{
-  id_service Int @id
-  start_date DateTime
-  ending_date DateTime
-  traveled_km Decimal
+model special_service {
+  id_service      Int      @id
+  start_date      DateTime
+  ending_date     DateTime
+  traveled_km     Decimal
   contract_number String
-  service service @relation(fields: [id_service], references: [id_service])
+  service         service  @relation(fields: [id_service], references: [id_service])
 }
 
-enum service_type{
+enum service_type {
   planned_service
   special_service
 }
 
 model tourist_group {
-  id_tourist_group Int    @id
+  id_tourist_group Int    @id @default(autoincrement())
   group_country    String
   passengers_count Int
-  group_number     Int    @unique
+  group_number     Int    
 }
 
 model user {
