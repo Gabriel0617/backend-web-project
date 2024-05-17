@@ -22,10 +22,6 @@ export class CarService {
     return this.prismaService.car.findMany();
   }
 
-  async deleteAllCars(){
-    return this.prismaService.car.deleteMany();
-  }
-
   async deleteCarById(id_car){
     return this.prismaService.car.delete({where: {id_car}});
   }

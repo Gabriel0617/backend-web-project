@@ -26,10 +26,7 @@ export class CarController {
     return this.carService.findCarById(id_car);
   }
 
-  @Delete()
-  deleteAllCars(){
-    return this.carService.deleteAllCars();
-  }
+ 
 
   @Delete(':id')
   deleteCarById(@Param('id', ParseIntPipe)id_car:number){

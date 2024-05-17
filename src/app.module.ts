@@ -9,9 +9,10 @@ import { UserModule } from './user/user.module';
 import { RoleService } from './role/role.service';
 import { RoleController } from './role/role.controller';
 import { RoleModule } from './role/role.module';
+import { CustomerModule } from './customer/customer.module';
 
 @Module({
-  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule],
+  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule, CustomerModule],
   controllers: [BusBrandController, RoleController],
   providers: [BusBrandService, RoleService],
 })

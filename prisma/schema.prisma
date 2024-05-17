@@ -36,7 +36,7 @@ model customer {
   customer_name     String
   customer_country  String
   customer_surnames String
-  customer_id       String    @unique
+  customer_id_number String @unique
   customer_cars     car[]
   requests          request[]
 }
@@ -70,7 +70,8 @@ model request {
   request_car      car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
   id_customer      Int
   request_customer customer @relation(fields: [id_customer], references: [id_customer], onDelete: Cascade, onUpdate: Cascade)
-  id_service       Int
+  id_service       Int @unique
+  request_service service @relation(fields: [id_service], references: [id_service])
  
 }
 
@@ -97,6 +98,8 @@ model service {
   service_code    String
   service_type    service_type
   id_request     Int
+  service_request request?
+
   
 
   planned_service planned_service?
