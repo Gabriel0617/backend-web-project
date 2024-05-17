@@ -1,9 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { BusBrandService } from './bus_brand.service';
 import { BusBrandPipe } from './bus_brand.pipe';
 import { CreateBusBrandDTO } from './dto/create_bus_brand.dto';
-import {CarPipe} from "../car/car.pipe";
-import {CreateCarDTO} from "../car/dto/create_car.dto";
+
 
 @Controller('bus-brand')
 export class BusBrandController {
@@ -30,6 +29,11 @@ export class BusBrandController {
   @Delete(':id')
   deleteBrandById(@Param('id', ParseIntPipe) id_brand : number){
     return this.busBrandService.deleteBrandById(id_brand);
+  }
+
+  @Patch(':id')
+  updateCarById(@Param('id', ParseIntPipe)id_brand: number,@Body() data: CreateBusBrandDTO){
+    this.busBrandService.updateBusBrandById(id_brand, data)
   }
 
 
