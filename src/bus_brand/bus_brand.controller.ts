@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestj
 import { BusBrandService } from './bus_brand.service';
 import { BusBrandPipe } from './bus_brand.pipe';
 import { CreateBusBrandDTO } from './dto/create_bus_brand.dto';
+import {CarPipe} from "../car/car.pipe";
+import {CreateCarDTO} from "../car/dto/create_car.dto";
 
 @Controller('bus-brand')
 export class BusBrandController {
