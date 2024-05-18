@@ -37,4 +37,15 @@ export class BusBrandService {
     
   }
 
+  async findBusBrandNameById(id_brand : number){
+    return this.prismaService.bus_brand.findUnique({
+      where: {
+        id_brand
+      },
+      select: {
+        brand_name: true,
+      },
+    });
+  }
+
 }

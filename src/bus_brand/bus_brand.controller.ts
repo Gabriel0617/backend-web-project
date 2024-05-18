@@ -21,9 +21,14 @@ export class BusBrandController {
     return this.busBrandService.findBusBrands();
   }
 
-  @Get(':id')
+  @Get(':id/full')
   getBrandById(@Param('id', ParseIntPipe) id_brand : number){
     return this.busBrandService.findBusBrandById(id_brand);
+  }
+
+  @Get(':id/name')
+  getBrandNameById(@Param('id', ParseIntPipe) id_brand : number){
+    return this.busBrandService.findBusBrandNameById(id_brand);
   }
 
   @Delete(':id')
