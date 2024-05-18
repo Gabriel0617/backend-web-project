@@ -9,18 +9,19 @@ datasource db {
 
 model bus_brand {
   id_brand         Int               @id @default(autoincrement())
-  chairs_count     Int
-  fuel_type        String
-  fuel_consumption Float
   brand_name       String
+  chairs_count     Int
+  fuel_consumption Float
+  fuel_type        String
   brand_cars       car[]
   reserve_drivers  reserver_driver[]
 }
 
 model car {
   id_car       Int       @id @default(autoincrement())
-  license_car  String    @unique
   fleet_number Int
+  license_car  String    @unique
+  
   brand_id     Int
   brand        bus_brand @relation(fields: [brand_id], references: [id_brand], onDelete: Cascade, onUpdate: Cascade)
 
@@ -33,22 +34,22 @@ model car {
 
 model customer {
   id_customer       Int       @id @default(autoincrement())
-  customer_name     String
-  customer_country  String
-  customer_surnames String
   customer_id_number String @unique
+  customer_name     String
+  customer_surnames String
+  customer_country  String
   customer_cars     car[]
   requests          request[]
 }
 
 model driver {
   id_driver    Int    @id() @default(autoincrement())
-  district     String
   driver_name  String
   address      String
+  district     String
   phone_number String
-  driver_type  String
   driver_dni   String @unique
+
 }
 
 model permanent_driver {
@@ -66,21 +67,23 @@ model reserver_driver {
 
 model request {
   id_request       Int      @id @default(autoincrement())
-  id_car           Int
-  request_car      car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
   id_customer      Int
-  request_customer customer @relation(fields: [id_customer], references: [id_customer], onDelete: Cascade, onUpdate: Cascade)
+  id_car           Int
   id_service       Int @unique
-  request_service service @relation(fields: [id_service], references: [id_service])
- 
+  request_car      car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
+  
+  request_customer customer @relation(fields: [id_customer], references: [id_customer], onDelete: Cascade, onUpdate: Cascade)
+
+  request_service special_service @relation(fields: [id_service], references: [id_service])
+
 }
 
 model road_map {
   id_road_map     Int      @id @default(autoincrement())
   road_map_number String   @unique
+  id_car          Int
   traveled_km     Decimal
   date            DateTime
-  id_car          Int
   road_map_car    car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
 }
 
@@ -93,27 +96,23 @@ model role {
 model service {
   id_service      Int          @id @default(autoincrement())
   service_name    String
+  service_code    String
   planned_km      Decimal
   planned_fuel    Decimal
-  service_code    String
-  service_type    service_type
-  id_request     Int
-  service_request request?
-
   
 
-  planned_service planned_service?
-  special_service special_service?
 }
 
 model planned_service {
   id_service       Int      @id
-  cust_req_number  Int
   pickup_location  String
-  pickud_time      DateTime
+  cust_req_number  Int
+  pickup_time      DateTime
+  id_request     Int
+
+
   id_tourist_group Int
 
-  service service @relation(fields: [id_service], references: [id_service])
 }
 
 model special_service {
@@ -122,19 +121,16 @@ model special_service {
   ending_date     DateTime
   traveled_km     Decimal
   contract_number String
-  service         service  @relation(fields: [id_service], references: [id_service])
-}
+  service_request request?
+ }
 
-enum service_type {
-  planned_service
-  special_service
-}
+
 
 model tourist_group {
   id_tourist_group Int    @id @default(autoincrement())
+  group_number     Int
   group_country    String
   passengers_count Int
-  group_number     Int    
 }
 
 model user {

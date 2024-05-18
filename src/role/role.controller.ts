@@ -14,13 +14,13 @@ export class RoleController {
     }
 
     @Get()
-    getAllUsers(){
+    getAllRoles(){
       return this.roleService.findRoles();
     }
   
     @Get(':id')
-    getUserById(@Param('id', ParseIntPipe) id_user: number){
-      return this.roleService.findRoleById(id_user);
+    getRoleById(@Param('id', ParseIntPipe) id_role: number){
+      return this.roleService.findRoleById(id_role);
     }
 
 }

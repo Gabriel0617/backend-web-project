@@ -2,8 +2,7 @@ export interface CreateDriverDTO {
     district: string,
     driver_name: string,
     address: string
-    phone_number: string
-    driver_type: string,
+    phone_number: string,
     driver_dni: string
    
 }

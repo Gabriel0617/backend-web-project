@@ -7,7 +7,7 @@ export class CustomerService {
     constructor(private prismaService: PrismaService) { }
 
     async createCustomer(data: CreateCustomerDTO) {
-
+     
         return this.prismaService.customer.create({data})
       }
     
