@@ -21,6 +21,11 @@ export class BusBrandController {
     return this.busBrandService.findBusBrands();
   }
 
+  @Get('allNames')
+  getAllBrandNames(){
+    return this.busBrandService.findAllBrandNames();
+  }
+
   @Get(':id/full')
   getBrandById(@Param('id', ParseIntPipe) id_brand : number){
     return this.busBrandService.findBusBrandById(id_brand);
@@ -29,6 +34,11 @@ export class BusBrandController {
   @Get(':id/name')
   getBrandNameById(@Param('id', ParseIntPipe) id_brand : number){
     return this.busBrandService.findBusBrandNameById(id_brand);
+  }
+
+  @Get(':name')
+  getBrandIdByName(@Param('name') brand_name : string){
+    return this.busBrandService.findBusBrandIdByName(brand_name);
   }
 
   @Delete(':id')

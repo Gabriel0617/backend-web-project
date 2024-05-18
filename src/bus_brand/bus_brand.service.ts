@@ -48,4 +48,23 @@ export class BusBrandService {
     });
   }
 
+  async findBusBrandIdByName(brand_name : string){
+    return this.prismaService.bus_brand.findUnique({
+      where: {
+        brand_name
+      },
+      select: {
+        id_brand: true,
+      },
+    });
+  }
+
+  async findAllBrandNames(){
+    return this.prismaService.bus_brand.findMany({
+      select: {
+        brand_name: true,
+      },
+    });
+  }
+
 }

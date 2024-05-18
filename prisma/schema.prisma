@@ -9,7 +9,7 @@ datasource db {
 
 model bus_brand {
   id_brand         Int               @id @default(autoincrement())
-  brand_name       String
+  brand_name       String @unique
   chairs_count     Int
   fuel_consumption Float
   fuel_type        String
