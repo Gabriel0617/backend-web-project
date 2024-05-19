@@ -10,14 +10,14 @@ export class CustomerController {
       ) { }
 
       @Post()
-      createCar(@Body(new CustomerPipe()) data: CreateCustomerDTO){
+      createCustomer(@Body(new CustomerPipe()) data: CreateCustomerDTO){
        
         
         return this.customerService.createCustomer(data)
       }
     
       @Get()
-      getAllCars(){
+      getAllCustomers(){
         return this.customerService.findCustomers();
       }
     
