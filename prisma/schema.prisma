@@ -34,7 +34,7 @@ model car {
 
 model customer {
   id_customer       Int       @id @default(autoincrement())
-  customer_id_number String @unique
+  customer_number String @unique
   customer_name     String
   customer_surnames String
   customer_country  String
