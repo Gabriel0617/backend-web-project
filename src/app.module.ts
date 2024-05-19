@@ -14,9 +14,10 @@ import { RoadMapModule } from './road_map/road_map.module';
 import { ServiceModule } from './service/service.module';
 import { TouristGroupModule } from './tourist_group/tourist_group.module';
 import { ServicePerformedModule } from './service_performed/service_performed.module';
+import { RequestModule } from './request/request.module';
 
 @Module({
-  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule],
+  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule],
   controllers: [BusBrandController, RoleController],
   providers: [BusBrandService, RoleService],
 })
