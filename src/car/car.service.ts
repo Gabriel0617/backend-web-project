@@ -9,9 +9,7 @@ export class CarService {
 
   async createCar(data: CreateCarDTO) {
 
-    return this.prismaService.car.create({
-      data
-    })
+    return this.prismaService.car.create({data})
   }
 
   async findCarById(id_car: number){

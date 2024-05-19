@@ -126,16 +126,24 @@ model special_service {
 
 model tourist_group {
   id_tourist_group Int    @id @default(autoincrement())
-  group_number     Int
+  group_number     Int @unique
   group_country    String
   passengers_count Int
   group_service planned_service?
+  tourist_group_service_performed service_performed ?
 }
 
 model user {
   id_user   Int    @id @default(autoincrement())
-  user_name String @unique
+  user_name String 
   password  String
   id_role   Int
   user_role role   @relation(fields: [id_role], references: [id_role], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model service_performed{
+  id_service_performed Int @id @default(autoincrement())
+  id_service Int
+  id_tourist_group Int @unique
+  service_performed_tourist_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group], onDelete: Cascade, onUpdate: Cascade)
 }
