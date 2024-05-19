@@ -56,6 +56,8 @@ export class DriverService {
     return this.prismaService.reserver_driver.delete({where: {id_driver}});
   }
 
+
+
   async findDriverById(id_driver: number) {
   
    
@@ -68,16 +70,15 @@ export class DriverService {
     const exists_reserver = await this.prismaService.reserver_driver.findUnique({where:{id_driver}});
     if (exists_permanent) {
       
-      const permanent_driver = await this.prismaService.permanent_driver.findUnique({
-        where: { id_driver }});
-        const { id_car } = permanent_driver
+     
+        
+        const { id_car } = exists_permanent
       additionalAttributes = {id_car};
       
 
     } else if (exists_reserver) {
-      const reserver_driver = await this.prismaService.reserver_driver.findUnique({
-        where: { id_driver }});
-        const { id_brand } = reserver_driver
+     
+        const { id_brand } = exists_reserver
       additionalAttributes = {id_brand};
     }
   
@@ -87,17 +88,13 @@ export class DriverService {
     };
   }
 
-  async updateDriverById(id_driver:number, data: CreateDriverDTO){
-
-      return this.prismaService.driver.update({where: {id_driver}, data})
-  }
 
   async updatePermanentDriverById(id_driver:number, data: CreatePermanentDriverDTO){
     const findPermanentDriver = await this.findDriverById(id_driver);
     if(!findPermanentDriver) throw new HttpException('Permanent Driver Not Found', 404);
     const { id_car, ...driverData } = data;
     await this.prismaService.driver.update({where : {id_driver}, data: driverData});
-    console.log(driverData)
+   
       return this.prismaService.permanent_driver.update({where: {id_driver}, data: {id_car}})
   }
 

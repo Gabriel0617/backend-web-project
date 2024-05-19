@@ -33,4 +33,8 @@ updateDriverById(@Param('id', ParseIntPipe)id_driver: number,@Body() data: Creat
   return this.driverService.updateReserverDriverById(id_driver, data as CreateReserverDriverDTO)
 }
 }
+@Delete(':id')
+deleteDriverById(@Param('id', ParseIntPipe)id_driver: number,@Body() data: CreateDriverDTO){
+  return this.driverService.deleteDriverById(id_driver);
+}
 }

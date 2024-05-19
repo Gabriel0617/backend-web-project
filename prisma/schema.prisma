@@ -108,10 +108,8 @@ model planned_service {
   pickup_location  String
   cust_req_number  Int
   pickup_time      DateTime
-  id_request     Int
-
-
-  id_tourist_group Int
+  id_tourist_group Int @unique
+  service_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group])
 
 }
 
@@ -122,7 +120,7 @@ model special_service {
   traveled_km     Decimal
   contract_number String
   service_request request?
- }
+}
 
 
 
@@ -131,6 +129,7 @@ model tourist_group {
   group_number     Int
   group_country    String
   passengers_count Int
+  group_service planned_service?
 }
 
 model user {
