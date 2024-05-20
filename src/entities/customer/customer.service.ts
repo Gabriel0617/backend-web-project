@@ -38,15 +38,15 @@ export class CustomerService {
         id_customer
       },
       select: {
-        customer_number: true,
+        customer_id_number: true,
       },
     });
   }
 
-  async findCustomerIdByNumber(customer_number : string){
+  async findCustomerIdByNumber(customer_id_number : string){
     return this.prismaService.customer.findUnique({
       where: {
-        customer_number
+        customer_id_number
       },
       select: {
         id_customer: true,
