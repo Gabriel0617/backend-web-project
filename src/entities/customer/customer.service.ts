@@ -30,4 +30,27 @@ export class CustomerService {
           return this.prismaService.customer.update({where: {id_customer}, data})
         
       }
+
+      
+  async findCustomerNumberById(id_customer : number){
+    return this.prismaService.customer.findUnique({
+      where: {
+        id_customer
+      },
+      select: {
+        customer_number: true,
+      },
+    });
+  }
+
+  async findCustomerIdByNumber(customer_number : string){
+    return this.prismaService.customer.findUnique({
+      where: {
+        customer_number
+      },
+      select: {
+        id_customer: true,
+      },
+    });
+  }
 }

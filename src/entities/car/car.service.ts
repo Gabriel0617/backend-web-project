@@ -30,5 +30,27 @@ export class CarService {
       return this.prismaService.car.update({where: {id_car}, data})
     
   }
+
+  async findCarLicenceById(id_car : number){
+    return this.prismaService.car.findUnique({
+      where: {
+        id_car
+      },
+      select: {
+        license_car: true,
+      },
+    });
+  }
+
+  async findCarIdByCarLicense(license_car : string){
+    return this.prismaService.car.findUnique({
+      where: {
+        license_car
+      },
+      select: {
+        id_car: true,
+      },
+    });
+  }
 }
 
