@@ -28,7 +28,7 @@ export class TouristGroupService {
       if(!findTouristGroup) throw new HttpException('Tourist Group Not Found', 404);
         return this.prismaService.tourist_group.update({where: {id_tourist_group}, data})
       
-    }2
+    }
 
     async findAllTouristGroupNumbers(){
       return this.prismaService.tourist_group.findMany({select :{group_number : true} });
