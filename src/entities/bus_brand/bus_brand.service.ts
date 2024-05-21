@@ -63,7 +63,7 @@ export class BusBrandService {
     return this.prismaService.bus_brand.findMany({
       select: {
         brand_name: true,
-      },
+      }
     });
   }
 
