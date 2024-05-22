@@ -57,7 +57,7 @@ export class BusBrandService {
         id_brand: true,
       },
     });
-  }
+  } 
 
   async findAllBrandNames(){
     return this.prismaService.bus_brand.findMany({
