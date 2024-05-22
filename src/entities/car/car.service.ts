@@ -32,7 +32,11 @@ export class CarService {
   }
 
   async findAllCarLicenses(){
-    return this.prismaService.car.findMany()
+    return this.prismaService.car.findMany({
+      select:{
+        license_car: true
+      }
+    })
   }
 
   async findCarLicenceById(id_car : number){
