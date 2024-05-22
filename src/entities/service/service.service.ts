@@ -68,13 +68,13 @@ export class ServiceService {
 
 
             const { id_service, ...planned_service_attributes } = exists_planned
-            additionalAttributes = { planned_service_attributes };
+            additionalAttributes =  planned_service_attributes ;
 
 
         } else if (exists_special) {
 
             const { id_service, ...special_service_attributes } = exists_special
-            additionalAttributes = { special_service_attributes };
+            additionalAttributes =  special_service_attributes ;
         }
 
         return {
@@ -105,4 +105,32 @@ export class ServiceService {
          } })
     }
 
+
+    async findAllSpecialServices(){
+        const special_services_ids = await this.prismaService.special_service.findMany({select: {id_service: true}});
+
+        const complete_special_services = [];
+        
+
+
+        for(let i = 0; i < special_services_ids.length; i++){
+     
+            
+            complete_special_services.push(await this.findServiceById(special_services_ids[i].id_service))
+           
+        }
+        return complete_special_services;
+    }
+
+    async findAllPlannedServices(){
+        const planned_services_ids = await this.prismaService.planned_service.findMany({select: {id_service: true}});
+        const complete_planned_services = [];
+        
+
+
+        for(let i = 0; i < planned_services_ids.length; i++){
+            complete_planned_services.push(await this.findServiceById(planned_services_ids[i].id_service))
+        }
+        return complete_planned_services;
+    }
 }

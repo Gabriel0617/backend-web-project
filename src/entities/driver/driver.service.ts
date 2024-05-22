@@ -106,4 +106,32 @@ export class DriverService {
       return this.prismaService.reserver_driver.update({where: {id_driver}, data: {id_brand}})
   }
 
+  async findAllPermanentDrivers(){
+    const permanentDrivers_ids = await this.prismaService.permanent_driver.findMany({select: {id_driver: true}});
+
+    const complete_permanent_drivers = [];
+    
+
+
+    for(let i = 0; i < complete_permanent_drivers.length; i++){
+ 
+        
+      complete_permanent_drivers.push(await this.findDriverById(permanentDrivers_ids[i].id_driver))
+       
+    }
+    return complete_permanent_drivers;
+}
+
+async findAllReserverDrivers(){
+    const reserver_drivers_ids = await this.prismaService.reserver_driver.findMany({select: {id_driver: true}});
+    const complete_reserver_drivers = [];
+    
+
+
+    for(let i = 0; i < reserver_drivers_ids.length; i++){
+        complete_reserver_drivers.push(await this.findDriverById(reserver_drivers_ids[i].id_driver))
+    }
+    return complete_reserver_drivers;
+}
+
 }

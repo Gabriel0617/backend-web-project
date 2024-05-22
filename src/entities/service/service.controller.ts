@@ -18,11 +18,22 @@ export class ServiceController {
       }
     }
     
-    
+    @Get('planned')
+    getAllPlannedServices(){
+     return this.serviceService.findAllPlannedServices();
+   }
+
+   @Get('special')
+   getAllSpecialServices(){
+ 
+     return this.serviceService.findAllSpecialServices();
+   }
     @Get(':id')
     getServiceById(@Param('id', ParseIntPipe)id_service :number){
       return this.serviceService.findServiceById(id_service);
     }
+
+ 
     
     @Patch(':id')
     updateServiceById(@Param('id', ParseIntPipe)id_service: number,@Body() data: CreateServiceDTO){
@@ -37,4 +48,6 @@ export class ServiceController {
     deleteDriverById(@Param('id', ParseIntPipe)id_service: number,@Body() data: CreateServiceDTO){
       return this.serviceService.deleteServiceById(id_service);
     }
+
+
 }

@@ -11,30 +11,41 @@ export class DriverController {
   ) { }
 
   @Post()
-  createDriver(@Body(new DriverPipe()) data: CreateDriverDTO){
-    if('id_car' in data){
-    return this.driverService.createPermanentDriver(data as CreatePermanentDriverDTO)
-  }else{
-    return this.driverService.createReserverDriver(data as CreateReserverDriverDTO)
+  createDriver(@Body(new DriverPipe()) data: CreateDriverDTO) {
+    if ('id_car' in data) {
+      return this.driverService.createPermanentDriver(data as CreatePermanentDriverDTO)
+    } else {
+      return this.driverService.createReserverDriver(data as CreateReserverDriverDTO)
+    }
   }
-}
+
+  @Get('permanent')
+  getAllPermanentDrivers() {
+    return this.driverService.findAllPermanentDrivers();
+  }
+
+  @Get('reserver')
+  getAllReserverDrivers() {
+
+    return this.driverService.findAllReserverDrivers();
+  }
 
 
-@Get(':id')
-getDriverById(@Param('id', ParseIntPipe)id_driver :number){
-  return this.driverService.findDriverById(id_driver);
-}
+  @Get(':id')
+  getDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.findDriverById(id_driver);
+  }
 
-@Patch(':id')
-updateDriverById(@Param('id', ParseIntPipe)id_driver: number,@Body() data: CreateDriverDTO){
-  if('id_car' in data){
-  return this.driverService.updatePermanentDriverById(id_driver, data as CreatePermanentDriverDTO)
-}else{
-  return this.driverService.updateReserverDriverById(id_driver, data as CreateReserverDriverDTO)
-}
-}
-@Delete(':id')
-deleteDriverById(@Param('id', ParseIntPipe)id_driver: number,@Body() data: CreateDriverDTO){
-  return this.driverService.deleteDriverById(id_driver);
-}
+  @Patch(':id')
+  updateDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
+    if ('id_car' in data) {
+      return this.driverService.updatePermanentDriverById(id_driver, data as CreatePermanentDriverDTO)
+    } else {
+      return this.driverService.updateReserverDriverById(id_driver, data as CreateReserverDriverDTO)
+    }
+  }
+  @Delete(':id')
+  deleteDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
+    return this.driverService.deleteDriverById(id_driver);
+  }
 }
