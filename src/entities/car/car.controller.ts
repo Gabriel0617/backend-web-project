@@ -32,8 +32,13 @@ export class CarController {
   }
 
   @Get(':license')
-  getCarIdByName(@Param('name') license_car : string){
+  getCarIdByLicense(@Param('license') license_car : string){
     return this.carService.findCarIdByCarLicense(license_car);
+  }
+
+  @Get('allLicense')
+  getAllCarLicenses(){
+    return this.carService.findAllCarLicenses();
   }
 
  

@@ -29,6 +29,10 @@ export class TouristGroupService {
         return this.prismaService.tourist_group.update({where: {id_tourist_group}, data})
       
     }
+
+    async findAllTouristGroupNumbers(){
+      return this.prismaService.tourist_group.findMany({select :{group_number : true} });
+    }
   }
   
 

@@ -19,6 +19,11 @@ const fakeUsers = [
 @Injectable()
 export class AuthService {
     validateUser({username, password}: AuthPayloadDto){
+        const findUser = fakeUsers.find((user) => user.username === username);
+        if(!findUser) return null;
 
+        if(password === findUser.password){
+            
+        }
     }
 }
