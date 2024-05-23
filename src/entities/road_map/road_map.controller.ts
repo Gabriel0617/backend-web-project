@@ -36,6 +36,10 @@ export class RoadMapController {
   getRoadMapNumberById(@Param('id', ParseIntPipe)id_road_map:number){
     return this.roadMapService.findRoadMapNumberById(id_road_map);
   }
+  @Get(':number/id')
+  getRoadMapIdByNumber(@Param('number') road_map_number:string){
+    return this.roadMapService.findRoadMapIdByNumber(road_map_number);
+  }
 
  
 
