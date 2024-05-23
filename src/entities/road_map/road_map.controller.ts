@@ -32,6 +32,11 @@ export class RoadMapController {
     return this.roadMapService.findRoadMapById(id_road_map);
   }
 
+  @Get(':id/number')
+  getRoadMapNumberById(@Param('id', ParseIntPipe)id_road_map:number){
+    return this.roadMapService.findRoadMapNumberById(id_road_map);
+  }
+
  
 
   @Delete(':id')
@@ -43,6 +48,8 @@ export class RoadMapController {
   updateRoadMapById(@Param('id', ParseIntPipe)id_road_map: number,@Body() data: createRoadMapDTO){
     this.roadMapService.updateRoadMapById(id_road_map, data)
   }
+
+
 
   
 

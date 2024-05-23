@@ -35,4 +35,8 @@ export class RoadMapService {
     async findAllRoadMapNumbers(){
       return this.prismaService.road_map.findMany({select: {road_map_number : true}});
     }
+
+    async findRoadMapNumberById(id_road_map: number){
+      return this.prismaService.road_map.findUnique({where: {id_road_map}, select : {road_map_number : true}});
+    }
 }
