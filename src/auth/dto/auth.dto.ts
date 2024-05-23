@@ -1,4 +1,5 @@
-export interface AuthPayloadDto{
-    username: string,
-    password: string
+export class AuthPayloadDto {
+  username: string;
+
+  loginPassword: string;
 }

@@ -144,4 +144,12 @@ export class ServiceService {
 
       return plannedServicesNames;
     }
+
+    async findPlannedServiceById(id_service : number){
+        const service_name = this.prismaService.service.findUnique({where: {id_service}, select : {service_name : true}});
+        const planned_service = this.prismaService.planned_service.findUnique({where: {id_service}});
+        if(service_name && planned_service ){
+            return service_name
+        }
+    }
 }

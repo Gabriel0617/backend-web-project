@@ -135,7 +135,7 @@ model tourist_group {
 
 model user {
   id_user   Int    @id @default(autoincrement())
-  user_name String 
+  user_name String @unique
   password  String
   id_role   Int
   user_role role   @relation(fields: [id_role], references: [id_role], onDelete: Cascade, onUpdate: Cascade)
