@@ -85,6 +85,7 @@ model road_map {
   traveled_km     Decimal
   date            DateTime
   road_map_car    car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
+  road_map_service_performed service_performed ?
 }
 
 model role {
@@ -130,7 +131,6 @@ model tourist_group {
   group_country    String
   passengers_count Int
   group_service planned_service?
-  tourist_group_service_performed service_performed ?
 }
 
 model user {
