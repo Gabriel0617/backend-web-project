@@ -95,7 +95,7 @@ model role {
 
 model service {
   id_service      Int          @id @default(autoincrement())
-  service_name    String
+  service_name    String @unique
   service_code    String
   planned_km      Decimal
   planned_fuel    Decimal
