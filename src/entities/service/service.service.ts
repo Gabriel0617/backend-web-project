@@ -160,4 +160,20 @@ export class ServiceService {
             return id_service 
         }
     }
+
+    async findSpecialServiceNameById(id_service : number){
+        const service_name = this.prismaService.service.findUnique({where: {id_service}, select : {service_name : true}});
+        const special_service = this.prismaService.special_service.findUnique({where: {id_service}});
+        if(service_name && special_service ){
+            return service_name
+        }
+    }
+
+    async findSpecialServiceIdByName(service_name : string){
+        const {id_service} =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+        const special_service = this.prismaService.special_service.findUnique({where: {id_service}});
+        if(id_service && special_service ){
+            return id_service 
+        }
+    }
 }
