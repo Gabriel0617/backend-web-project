@@ -122,6 +122,17 @@ export class ServiceService {
         return complete_special_services;
     }
 
+    async findAllSpecialServicesNames(){
+        const specialServices = await this.findAllSpecialServices();
+ 
+        const specialServicesNames = specialServices.map(service => ({
+         id_service : service.id_service,
+         service_name: service.service_name
+       }));
+ 
+       return specialServicesNames;
+     }
+
     async findAllPlannedServices(){
         const planned_services_ids = await this.prismaService.planned_service.findMany({select: {id_service: true}});
         const complete_planned_services = [];

@@ -58,6 +58,11 @@ export class ServiceController {
     return this.serviceService.findAllPlannedServicesNames();
   }
 
+  @Get('special/names')
+  getAllSpecialServicesNames() {
+    return this.serviceService.findAllSpecialServicesNames();
+  }
+
   @Get(':id')
   getServiceById(@Param('id', ParseIntPipe) id_service: number) {
     return this.serviceService.findServiceById(id_service);
