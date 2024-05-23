@@ -144,7 +144,7 @@ model user {
 model service_performed{
   id_service_performed Int @id @default(autoincrement())
   id_service Int @unique
-  id_tourist_group Int @unique
+  id_road_map Int @unique
   service_performed_tourist_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group], onDelete: Cascade, onUpdate: Cascade)
   service_performed_special_service planned_service @relation(fields: [id_service], references: [id_service] ,onDelete: Cascade, onUpdate: Cascade )
 }
