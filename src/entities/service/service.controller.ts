@@ -5,49 +5,55 @@ import { CreatePlannedServiceDTO, CreateServiceDTO, CreateSpecialServiceDTO } fr
 
 @Controller('service')
 export class ServiceController {
-    constructor(
-        private serviceService: ServiceService
-      ) { }
-    
-      @Post()
-      createService(@Body(new ServicePipe()) data: CreateServiceDTO){
-        if('pickup_time' in data){
-        return this.serviceService.createPlannedService(data as CreatePlannedServiceDTO)
-      }else{
-        return this.serviceService.createSpecialService(data as CreateSpecialServiceDTO)
-      }
-    }
-    
-    @Get('planned')
-    getAllPlannedServices(){
-     return this.serviceService.findAllPlannedServices();
-   }
+  constructor(
+    private serviceService: ServiceService
+  ) { }
 
-   @Get('special')
-   getAllSpecialServices(){
- 
-     return this.serviceService.findAllSpecialServices();
-   }
-    @Get(':id')
-    getServiceById(@Param('id', ParseIntPipe)id_service :number){
-      return this.serviceService.findServiceById(id_service);
+  @Post()
+  createService(@Body(new ServicePipe()) data: CreateServiceDTO) {
+    if ('pickup_time' in data) {
+      return this.serviceService.createPlannedService(data as CreatePlannedServiceDTO)
+    } else {
+      return this.serviceService.createSpecialService(data as CreateSpecialServiceDTO)
+    }
+  }
+
+  @Get('planned')
+  getAllPlannedServices() {
+    return this.serviceService.findAllPlannedServices();
+  }
+
+  @Get('special')
+  getAllSpecialServices() {
+
+    return this.serviceService.findAllSpecialServices();
+  }
+
+  @Get('planned/names')
+  getAllPlannedServicesNames() {
+    return this.serviceService.findAllPlannedServicesNames();
+  }
+
+  @Get(':id')
+  getServiceById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.findServiceById(id_service);
+  }
+
+
+
+  @Patch(':id')
+  updateServiceById(@Param('id', ParseIntPipe) id_service: number, @Body() data: CreateServiceDTO) {
+    if ('pickup_time' in data) {
+      return this.serviceService.updatePlannedServiceById(id_service, data as CreatePlannedServiceDTO)
+    } else {
+      return this.serviceService.updateSpecialServiceById(id_service, data as CreateSpecialServiceDTO)
     }
 
- 
-    
-    @Patch(':id')
-    updateServiceById(@Param('id', ParseIntPipe)id_service: number,@Body() data: CreateServiceDTO){
-        if('pickup_time' in data){
-            return this.serviceService.updatePlannedServiceById(id_service,data as CreatePlannedServiceDTO)
-          }else{
-            return this.serviceService.updateSpecialServiceById(id_service, data as CreateSpecialServiceDTO)
-          }
- 
-    }
-    @Delete(':id')
-    deleteDriverById(@Param('id', ParseIntPipe)id_service: number,@Body() data: CreateServiceDTO){
-      return this.serviceService.deleteServiceById(id_service);
-    }
+  }
+  @Delete(':id')
+  deleteDriverById(@Param('id', ParseIntPipe) id_service: number, @Body() data: CreateServiceDTO) {
+    return this.serviceService.deleteServiceById(id_service);
+  }
 
 
 }

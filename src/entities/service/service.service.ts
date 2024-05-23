@@ -133,4 +133,15 @@ export class ServiceService {
         }
         return complete_planned_services;
     }
+
+    async findAllPlannedServicesNames(){
+       const plannedServices = await this.findAllPlannedServices();
+
+       const plannedServicesNames = plannedServices.map(service => ({
+        id_service : service.id_service,
+        service_name: service.service_name
+      }));
+
+      return plannedServicesNames;
+    }
 }
