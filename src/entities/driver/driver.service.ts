@@ -47,12 +47,12 @@ export class DriverService {
   }
 
   async deletePermanentDriverById(id_driver){
-    this.prismaService.driver.delete({where : {id_driver}});
+    await this.prismaService.driver.delete({where : {id_driver}});
     return this.prismaService.permanent_driver.delete({where: {id_driver}});
   }
 
   async deleteReserverDriverById(id_driver){
-    this.prismaService.driver.delete({where : {id_driver}});
+    await this.prismaService.driver.delete({where : {id_driver}});
     return this.prismaService.reserver_driver.delete({where: {id_driver}});
   }
 

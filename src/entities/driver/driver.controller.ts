@@ -51,8 +51,8 @@ export class DriverController {
     return this.driverService.deletePermanentDriverById(id_driver);
   }
 
-  @Delete(':id/reserve')
-  deleteReserveDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+  @Delete(':id/reserver')
+  deleteReserverDriverById(@Param('id', ParseIntPipe) id_driver: number) {
     return this.driverService.deleteReserverDriverById(id_driver);
   }
 }
