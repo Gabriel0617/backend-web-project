@@ -44,8 +44,14 @@ export class DriverController {
       return this.driverService.updateReserverDriverById(id_driver, data as CreateReserverDriverDTO)
     }
   }
-  @Delete(':id')
-  deleteDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
-    return this.driverService.deleteDriverById(id_driver);
+
+  @Delete(':id/permanent')
+  deletePermanentDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deletePermanentDriverById(id_driver);
+  }
+
+  @Delete(':id/reserve')
+  deleteReserveDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deleteReserverDriverById(id_driver);
   }
 }
