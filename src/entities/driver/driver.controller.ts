@@ -14,13 +14,14 @@ export class DriverController {
   createDriver(@Body(new DriverPipe()) data: CreateDriverDTO) {
     if ('id_car' in data) {
       return this.driverService.createPermanentDriver(data as CreatePermanentDriverDTO)
-    } else {
+    } else if('id_brand' in data) {
       return this.driverService.createReserverDriver(data as CreateReserverDriverDTO)
     }
   }
 
   @Get('permanent')
   getAllPermanentDrivers() {
+ 
     return this.driverService.findAllPermanentDrivers();
   }
 
