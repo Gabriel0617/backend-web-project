@@ -22,6 +22,21 @@ export class TouristGroupController {
         return this.touristGroupService.findTouristGroups();
     }
 
+    @Get('allNumbers')
+    getAllTouristGroupNumbers(){
+        return this.getAllTouristGroupNumbers();
+    }
+
+    @Get(':id/number')
+    getTouristGroupNumberById(@Param('id', ParseIntPipe) id_tourist_group: number) {
+        return this.touristGroupService.findTouristGroupIdByNumber(id_tourist_group);
+    }
+
+    @Get(':number/id')
+    getTouristGroupIdbyNumber(@Param('number', ParseIntPipe) group_number: number) {
+        return this.touristGroupService.findTouristGroupNumberById(group_number);
+    }
+
     @Get(':id')
     getTouristGroupById(@Param('id', ParseIntPipe) id_tourist_group: number) {
         return this.touristGroupService.findTouristGroupById(id_tourist_group);

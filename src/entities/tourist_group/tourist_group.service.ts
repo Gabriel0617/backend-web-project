@@ -33,6 +33,14 @@ export class TouristGroupService {
     async findAllTouristGroupNumbers(){
       return this.prismaService.tourist_group.findMany({select :{group_number : true} });
     }
+
+    async findTouristGroupNumberById(id_tourist_group : number){
+      return this.prismaService.tourist_group.findMany({select :{id_tourist_group : true} });
+    }
+
+    async findTouristGroupIdByNumber(group_number){
+      return this.prismaService.tourist_group.findMany({select :{group_number : true} });
+    }
   }
   
 
