@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { BusBrandService } from './bus_brand.service';
 import { BusBrandPipe } from './bus_brand.pipe';
 import { CreateBusBrandDTO } from './dto/create_bus_brand.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 
 @Controller('bus-brand')
@@ -15,7 +16,7 @@ export class BusBrandController {
   
     return this.busBrandService.createBusBrand(data)
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAllBrands(){
     return this.busBrandService.findBusBrands();
