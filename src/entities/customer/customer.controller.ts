@@ -37,7 +37,7 @@ export class CustomerController {
       }
 
     
-      @Get(':number')
+      @Get(':number/id')
       getCustomerIdByNumber(@Param('name') customer_number : string){
         return this.customerService.findCustomerIdByNumber(customer_number);
       }
