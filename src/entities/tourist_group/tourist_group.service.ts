@@ -39,7 +39,7 @@ export class TouristGroupService {
     }
 
     async findTouristGroupIdByNumber(group_number : number){
-      return this.prismaService.tourist_group.findUnique({where: {group_number}, select :{group_number : true} });
+      return this.prismaService.tourist_group.findUnique({where: {group_number}, select :{id_tourist_group : true} });
     }
   }
   
