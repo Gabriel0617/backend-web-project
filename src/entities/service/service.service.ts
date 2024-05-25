@@ -1,6 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePlannedServiceDTO, CreateServiceDTO, CreateSpecialServiceDTO } from './dto/create_service.dto';
+import { log } from 'console';
 
 @Injectable()
 export class ServiceService {
@@ -47,12 +48,12 @@ export class ServiceService {
     }
 
     async deletePlannedServiceById(id_service) {
-        this.prismaService.service.delete({ where: { id_service } });
+        await this.prismaService.service.delete({ where: { id_service } });
         return this.prismaService.planned_service.delete({ where: { id_service } });
     }
 
     async deleteSpecialServiceById(id_service) {
-        this.prismaService.service.delete({ where: { id_service } });
+        await this.prismaService.service.delete({ where: { id_service } });
         return this.prismaService.special_service.delete({ where: { id_service } });
     }
 
@@ -122,6 +123,17 @@ export class ServiceService {
         return complete_special_services;
     }
 
+    async findAllSpecialServicesNames(){
+        const specialServices = await this.findAllSpecialServices();
+ 
+        const specialServicesNames = specialServices.map(service => ({
+         id_service : service.id_service,
+         service_name: service.service_name
+       }));
+ 
+       return specialServicesNames;
+     }
+
     async findAllPlannedServices(){
         const planned_services_ids = await this.prismaService.planned_service.findMany({select: {id_service: true}});
         const complete_planned_services = [];
@@ -143,5 +155,42 @@ export class ServiceService {
       }));
 
       return plannedServicesNames;
+    }
+
+    async findPlannedServiceNameById(id_service : number){
+        const service_name = this.prismaService.service.findUnique({where: {id_service}, select : {service_name : true}});
+        const planned_service = this.prismaService.planned_service.findUnique({where: {id_service}});
+        if(service_name && planned_service ){
+            return service_name
+        }
+    }
+
+    async findPlannedServiceIdByName(service_name : string){
+   
+        const id_service2 =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+       const {id_service} = id_service2
+        const planned_service = this.prismaService.planned_service.findUnique({where: {id_service}});
+        if(id_service && planned_service ){
+            return id_service2;
+        }
+    }
+
+    async findSpecialServiceNameById(id_service : number){
+        const service_name = this.prismaService.service.findUnique({where: {id_service}, select : {service_name : true}});
+        const special_service = this.prismaService.special_service.findUnique({where: {id_service}});
+        if(service_name && special_service ){
+            return service_name;
+        }
+    }
+
+    async findSpecialServiceIdByName(service_name : string){
+        
+        const id_service2 =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+        const {id_service} = id_service2
+        const special_service =await this.prismaService.special_service.findUnique({where: {id_service}});
+       
+        if(id_service && special_service ){
+            return id_service2
+        }
     }
 }

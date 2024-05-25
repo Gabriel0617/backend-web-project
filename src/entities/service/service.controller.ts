@@ -23,6 +23,28 @@ export class ServiceController {
     return this.serviceService.findAllPlannedServices();
   }
 
+  @Get(':name/plannedName')
+  getPlannedServiceIdByName(@Param('name') service_name: string) {
+    return this.serviceService.findPlannedServiceIdByName(service_name);
+  }
+
+  @Get(':id/plannedId')
+  getPlannedServiceNameById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.findPlannedServiceNameById(id_service);
+  }
+  
+  @Get(':name/specialName')
+  getSpecialServiceIdByName(@Param('name') service_name: string) {
+    return this.serviceService.findSpecialServiceIdByName(service_name);
+  }
+
+  @Get(':id/specialId')
+  getSpecialServiceNameById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.findSpecialServiceNameById(id_service);
+  }
+
+  
+
   @Get('special')
   getAllSpecialServices() {
 
@@ -32,6 +54,11 @@ export class ServiceController {
   @Get('planned/names')
   getAllPlannedServicesNames() {
     return this.serviceService.findAllPlannedServicesNames();
+  }
+
+  @Get('special/names')
+  getAllSpecialServicesNames() {
+    return this.serviceService.findAllSpecialServicesNames();
   }
 
   @Get(':id')
@@ -50,9 +77,14 @@ export class ServiceController {
     }
 
   }
-  @Delete(':id')
-  deleteDriverById(@Param('id', ParseIntPipe) id_service: number, @Body() data: CreateServiceDTO) {
-    return this.serviceService.deleteServiceById(id_service);
+  @Delete(':id/planned')
+  deletePlannedServiceById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.deletePlannedServiceById(id_service);
+  }
+
+  @Delete(':id/special')
+  deleteSpecialServiceById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.deleteSpecialServiceById(id_service);
   }
 
 

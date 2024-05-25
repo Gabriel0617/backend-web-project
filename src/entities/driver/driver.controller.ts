@@ -14,13 +14,14 @@ export class DriverController {
   createDriver(@Body(new DriverPipe()) data: CreateDriverDTO) {
     if ('id_car' in data) {
       return this.driverService.createPermanentDriver(data as CreatePermanentDriverDTO)
-    } else {
+    } else if('id_brand' in data) {
       return this.driverService.createReserverDriver(data as CreateReserverDriverDTO)
     }
   }
 
   @Get('permanent')
   getAllPermanentDrivers() {
+ 
     return this.driverService.findAllPermanentDrivers();
   }
 
@@ -44,8 +45,14 @@ export class DriverController {
       return this.driverService.updateReserverDriverById(id_driver, data as CreateReserverDriverDTO)
     }
   }
-  @Delete(':id')
-  deleteDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
-    return this.driverService.deleteDriverById(id_driver);
+
+  @Delete(':id/permanent')
+  deletePermanentDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deletePermanentDriverById(id_driver);
+  }
+
+  @Delete(':id/reserver')
+  deleteReserverDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deleteReserverDriverById(id_driver);
   }
 }

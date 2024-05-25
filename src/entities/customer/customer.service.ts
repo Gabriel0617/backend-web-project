@@ -53,4 +53,8 @@ export class CustomerService {
       },
     });
   }
+
+  async findAllCustomerNumbers(){
+    return this.prismaService.customer.findMany({select: {customer_id_number: true}});
+  }
 }

@@ -47,12 +47,12 @@ export class DriverService {
   }
 
   async deletePermanentDriverById(id_driver){
-    this.prismaService.driver.delete({where : {id_driver}});
+    await this.prismaService.driver.delete({where : {id_driver}});
     return this.prismaService.permanent_driver.delete({where: {id_driver}});
   }
 
   async deleteReserverDriverById(id_driver){
-    this.prismaService.driver.delete({where : {id_driver}});
+    await this.prismaService.driver.delete({where : {id_driver}});
     return this.prismaService.reserver_driver.delete({where: {id_driver}});
   }
 
@@ -107,16 +107,16 @@ export class DriverService {
   }
 
   async findAllPermanentDrivers(){
-    const permanentDrivers_ids = await this.prismaService.permanent_driver.findMany({select: {id_driver: true}});
-
+    const permanent_drivers_ids = await this.prismaService.permanent_driver.findMany({select: {id_driver: true}});
+    
     const complete_permanent_drivers = [];
     
 
 
-    for(let i = 0; i < complete_permanent_drivers.length; i++){
+    for(let i = 0; i < permanent_drivers_ids.length; i++){
  
         
-      complete_permanent_drivers.push(await this.findDriverById(permanentDrivers_ids[i].id_driver))
+      complete_permanent_drivers.push(await this.findDriverById(permanent_drivers_ids[i].id_driver))
        
     }
     return complete_permanent_drivers;
@@ -133,5 +133,6 @@ async findAllReserverDrivers(){
     }
     return complete_reserver_drivers;
 }
+
 
 }

@@ -20,6 +20,11 @@ export class CustomerController {
       getAllCustomers(){
         return this.customerService.findCustomers();
       }
+
+      @Get('allNumbers')
+      getAllCustomerNumbers(){
+        return this.customerService.findAllCustomerNumbers();
+      }
     
       @Get(':id/full')
       getCustomerById(@Param('id', ParseIntPipe)id_customer:number){
@@ -30,12 +35,14 @@ export class CustomerController {
       getCustomerNumberById(@Param('id', ParseIntPipe) id_customer : number){
         return this.customerService.findCustomerNumberById(id_customer);
       }
+
     
       @Get(':number')
       getCustomerIdByNumber(@Param('name') customer_number : string){
         return this.customerService.findCustomerIdByNumber(customer_number);
       }
     
+     
      
     
       @Delete(':id')
