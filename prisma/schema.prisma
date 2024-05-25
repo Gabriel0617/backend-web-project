@@ -85,7 +85,7 @@ model road_map {
   traveled_km     Decimal
   date            DateTime
   road_map_car    car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
-  road_map_service_performed service_performed ?
+  
 }
 
 model role {
@@ -109,7 +109,7 @@ model planned_service {
   pickup_location  String
   cust_req_number  Int
   pickup_time      DateTime
-  id_tourist_group Int @unique
+  id_tourist_group Int
   service_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group])
   planned_service_service_performed service_performed ?
 }
@@ -130,7 +130,9 @@ model tourist_group {
   group_number     Int @unique
   group_country    String
   passengers_count Int
-  group_service planned_service?
+  group_services planned_service []
+  tourist_group_service_performed service_performed ?
+  
 }
 
 model user {
@@ -144,7 +146,7 @@ model user {
 model service_performed{
   id_service_performed Int @id @default(autoincrement())
   id_service Int @unique
-  id_road_map Int @unique
-  service_performed_road_map road_map @relation(fields: [id_road_map], references: [id_road_map], onDelete: Cascade, onUpdate: Cascade)
+id_tourist_group Int @unique
+  service_performed_tourist_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group], onDelete: Cascade, onUpdate: Cascade)
   service_performed_special_service planned_service @relation(fields: [id_service], references: [id_service] ,onDelete: Cascade, onUpdate: Cascade )
 }
