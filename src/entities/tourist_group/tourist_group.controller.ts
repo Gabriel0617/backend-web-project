@@ -24,7 +24,7 @@ export class TouristGroupController {
 
     @Get('allNumbers')
     getAllTouristGroupNumbers(){
-        return this.getAllTouristGroupNumbers();
+        return this.touristGroupService.findAllTouristGroupNumbers();
     }
 
     @Get(':id/number')

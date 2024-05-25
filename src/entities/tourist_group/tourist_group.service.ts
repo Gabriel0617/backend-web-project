@@ -35,11 +35,11 @@ export class TouristGroupService {
     }
 
     async findTouristGroupNumberById(id_tourist_group : number){
-      return this.prismaService.tourist_group.findMany({select :{id_tourist_group : true} });
+      return this.prismaService.tourist_group.findUnique({where : {id_tourist_group} ,select :{group_number : true} });
     }
 
-    async findTouristGroupIdByNumber(group_number){
-      return this.prismaService.tourist_group.findMany({select :{group_number : true} });
+    async findTouristGroupIdByNumber(group_number : number){
+      return this.prismaService.tourist_group.findUnique({where: {group_number}, select :{group_number : true} });
     }
   }
   
