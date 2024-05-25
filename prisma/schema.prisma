@@ -108,7 +108,7 @@ model planned_service {
   pickup_location  String
   cust_req_number  Int
   pickup_time      DateTime
-  id_tourist_group Int @unique
+  id_tourist_group Int
   service_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group])
   planned_service_service_performed service_performed ?
 }
@@ -129,7 +129,7 @@ model tourist_group {
   group_number     Int @unique
   group_country    String
   passengers_count Int
-  group_service planned_service?
+  group_services planned_service []
   tourist_group_service_performed service_performed ?
 }
 
