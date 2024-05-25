@@ -148,5 +148,5 @@ model service_performed{
   id_service Int @unique
 id_road_map Int @unique
   service_performed_road_map road_map @relation(fields: [id_road_map], references: [id_road_map], onDelete: Cascade, onUpdate: Cascade)
-  service_performed_special_service planned_service @relation(fields: [id_service], references: [id_service] ,onDelete: Cascade, onUpdate: Cascade )
+  service_performed_planned_service planned_service @relation(fields: [id_service], references: [id_service] ,onDelete: Cascade, onUpdate: Cascade )
 }
