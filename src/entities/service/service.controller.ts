@@ -77,9 +77,14 @@ export class ServiceController {
     }
 
   }
-  @Delete(':id')
-  deleteDriverById(@Param('id', ParseIntPipe) id_service: number, @Body() data: CreateServiceDTO) {
-    return this.serviceService.deleteServiceById(id_service);
+  @Delete(':id/planned')
+  deletePlannedServiceById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.deletePlannedServiceById(id_service);
+  }
+
+  @Delete(':id/special')
+  deleteSpecialServiceById(@Param('id', ParseIntPipe) id_service: number) {
+    return this.serviceService.deleteSpecialServiceById(id_service);
   }
 
 

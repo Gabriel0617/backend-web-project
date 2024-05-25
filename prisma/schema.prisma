@@ -119,7 +119,7 @@ model special_service {
   start_date      DateTime
   ending_date     DateTime
   traveled_km     Decimal
-  contract_number String
+  contract_number Int
   service_request request?
 }
 

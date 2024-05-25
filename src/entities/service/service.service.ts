@@ -48,12 +48,12 @@ export class ServiceService {
     }
 
     async deletePlannedServiceById(id_service) {
-        this.prismaService.service.delete({ where: { id_service } });
+        await this.prismaService.service.delete({ where: { id_service } });
         return this.prismaService.planned_service.delete({ where: { id_service } });
     }
 
     async deleteSpecialServiceById(id_service) {
-        this.prismaService.service.delete({ where: { id_service } });
+        await this.prismaService.service.delete({ where: { id_service } });
         return this.prismaService.special_service.delete({ where: { id_service } });
     }
 
