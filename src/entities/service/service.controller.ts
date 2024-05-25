@@ -23,24 +23,22 @@ export class ServiceController {
     return this.serviceService.findAllPlannedServices();
   }
 
-  @Get(':name/planned')
+  @Get(':name/plannedName')
   getPlannedServiceIdByName(@Param('name') service_name: string) {
     return this.serviceService.findPlannedServiceIdByName(service_name);
   }
 
-  @Get(':id/planned')
+  @Get(':id/plannedId')
   getPlannedServiceNameById(@Param('id', ParseIntPipe) id_service: number) {
     return this.serviceService.findPlannedServiceNameById(id_service);
   }
-
-
   
-  @Get(':name/special')
+  @Get(':name/specialName')
   getSpecialServiceIdByName(@Param('name') service_name: string) {
     return this.serviceService.findSpecialServiceIdByName(service_name);
   }
 
-  @Get(':id/special')
+  @Get(':id/specialId')
   getSpecialServiceNameById(@Param('id', ParseIntPipe) id_service: number) {
     return this.serviceService.findSpecialServiceNameById(id_service);
   }

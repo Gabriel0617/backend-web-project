@@ -1,6 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePlannedServiceDTO, CreateServiceDTO, CreateSpecialServiceDTO } from './dto/create_service.dto';
+import { log } from 'console';
 
 @Injectable()
 export class ServiceService {
@@ -165,10 +166,12 @@ export class ServiceService {
     }
 
     async findPlannedServiceIdByName(service_name : string){
-        const {id_service} =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+   
+        const id_service2 =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+       const {id_service} = id_service2
         const planned_service = this.prismaService.planned_service.findUnique({where: {id_service}});
         if(id_service && planned_service ){
-            return id_service 
+            return id_service2;
         }
     }
 
@@ -176,15 +179,18 @@ export class ServiceService {
         const service_name = this.prismaService.service.findUnique({where: {id_service}, select : {service_name : true}});
         const special_service = this.prismaService.special_service.findUnique({where: {id_service}});
         if(service_name && special_service ){
-            return service_name
+            return service_name;
         }
     }
 
     async findSpecialServiceIdByName(service_name : string){
-        const {id_service} =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
-        const special_service = this.prismaService.special_service.findUnique({where: {id_service}});
+        
+        const id_service2 =  await this.prismaService.service.findUnique({where: {service_name}, select : {id_service : true}});
+        const {id_service} = id_service2
+        const special_service =await this.prismaService.special_service.findUnique({where: {id_service}});
+       
         if(id_service && special_service ){
-            return id_service 
+            return id_service2
         }
     }
 }
