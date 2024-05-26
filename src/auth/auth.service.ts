@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private jwtService: JwtService, private prismaService: PrismaService) {}
 
   async validateUser({ username, loginPassword }: AuthPayloadDto) {
-    const findUser = await this.prismaService.user.findUnique({where: {user_name: username}})
+    const findUser = await this.prismaService.user.findUnique({where: {username: username}})
     if (!findUser) return null;
     
     const {password, ...user} = findUser
