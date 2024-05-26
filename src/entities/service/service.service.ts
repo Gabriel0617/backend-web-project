@@ -127,7 +127,7 @@ export class ServiceService {
         const specialServices = await this.findAllSpecialServices();
  
         const specialServicesNames = specialServices.map(service => ({
-         id_service : service.id_service,
+        
          service_name: service.service_name
        }));
  
