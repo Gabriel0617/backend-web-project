@@ -24,7 +24,7 @@ export class RoadMapController {
 
   @Get('AllNumbers')
   getAllRoadMapNumbers(){
-    return this.getAllRoadMapNumbers();
+    return this.roadMapService.findAllRoadMapNumbers();
   }
 
   @Get(':id')
