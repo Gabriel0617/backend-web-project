@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { CarService } from './car.service';
 import { CarPipe } from './car.pipe';
 import { CreateCarDTO } from './dto/create_car.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('car')
 export class CarController {

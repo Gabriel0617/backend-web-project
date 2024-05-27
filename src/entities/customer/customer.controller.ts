@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { CustomerService } from './customer.service';
 import { CustomerPipe } from './customer.pipe';
 import { CreateCustomerDTO } from './dto/create_customer.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('customer')
 export class CustomerController {

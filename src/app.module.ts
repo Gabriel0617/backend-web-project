@@ -10,12 +10,13 @@ import { ServiceModule } from './entities/service/service.module';
 import { TouristGroupModule } from './entities/tourist_group/tourist_group.module';
 import { ServicePerformedModule } from './entities/service_performed/service_performed.module';
 import { RequestModule } from './entities/request/request.module';
-import { RoleModule } from './entities/role/role.module';
+
 import { AuthModule } from './auth/auth.module';
 
 
+
 @Module({
-  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule, AuthModule],
+  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule, AuthModule],
   controllers: [],
   providers: [],
 })

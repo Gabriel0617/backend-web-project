@@ -88,11 +88,6 @@ model road_map {
   road_map_service_performed service_performed ?
 }
 
-model role {
-  id_role    Int    @id @default(autoincrement())
-  role_name  String
-  role_users user[]
-}
 
 model service {
   id_service      Int          @id @default(autoincrement())
@@ -139,8 +134,8 @@ model user {
   id_user   Int    @id @default(autoincrement())
   username String @unique
   password  String
-  id_role   Int
-  user_role role   @relation(fields: [id_role], references: [id_role], onDelete: Cascade, onUpdate: Cascade)
+  user_role   String
+  
 }
 
 model service_performed{

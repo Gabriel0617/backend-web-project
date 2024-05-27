@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { ServiceService } from './service.service';
 import { ServicePipe } from './service.pipe';
 import { CreatePlannedServiceDTO, CreateServiceDTO, CreateSpecialServiceDTO } from './dto/create_service.dto';
-
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 @Controller('service')
 export class ServiceController {
   constructor(

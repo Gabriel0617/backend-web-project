@@ -3,6 +3,7 @@ import { DriverService } from './driver.service';
 
 import { CreateDriverDTO, CreatePermanentDriverDTO, CreateReserverDriverDTO } from './dto/create_driver.dto';
 import { DriverPipe } from './driver.pipe';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('driver')
 export class DriverController {
