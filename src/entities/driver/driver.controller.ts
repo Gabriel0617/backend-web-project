@@ -52,4 +52,10 @@ export class DriverController {
   deleteDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
     return this.driverService.deleteDriverById(id_driver);
   }
+
+
+  @Get('drivers/ByDistrict')
+  getAllDriverByDistrict(){
+    return this.driverService.findAllDriversByDistrict();
+  }
 }
