@@ -12,12 +12,14 @@ import { ServicePerformedModule } from './entities/service_performed/service_per
 import { RequestModule } from './entities/request/request.module';
 
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt.guard';
 
 
 
 @Module({
   imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule, AuthModule],
   controllers: [],
-  providers: [],
+ providers: [],
 })
 export class AppModule {}
