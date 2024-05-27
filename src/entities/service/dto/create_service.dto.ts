@@ -16,5 +16,6 @@ export interface CreateSpecialServiceDTO extends CreateServiceDTO{
     start_date   :   Date,
     ending_date  :   Date,
     traveled_km  :   number,
-    contract_number: number
+    contract_number: number,
+    id_request
 }
