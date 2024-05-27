@@ -8,9 +8,10 @@ import { JwtAuthGuard } from './guards/jwt.guard';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+ 
 
   @Post('login')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(LocalGuard)
   login(@Req() req: Request) {
     return req.user;
   }

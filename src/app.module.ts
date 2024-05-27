@@ -10,13 +10,16 @@ import { ServiceModule } from './entities/service/service.module';
 import { TouristGroupModule } from './entities/tourist_group/tourist_group.module';
 import { ServicePerformedModule } from './entities/service_performed/service_performed.module';
 import { RequestModule } from './entities/request/request.module';
-import { RoleModule } from './entities/role/role.module';
+
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt.guard';
+
 
 
 @Module({
-  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, RoleModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule, AuthModule],
+  imports: [ DriverModule, PrismaModule, CarModule, BusBrandModule, UserModule, CustomerModule, RoadMapModule, ServiceModule, TouristGroupModule, ServicePerformedModule, RequestModule, AuthModule],
   controllers: [],
-  providers: [],
+ providers: [],
 })
 export class AppModule {}
