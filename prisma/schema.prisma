@@ -69,12 +69,13 @@ model request {
   id_request       Int      @id @default(autoincrement())
   id_customer      Int
   id_car           Int
-  id_service       Int @unique
+  id_service       Int 
+  request_service special_service @relation(fields: [id_service], references: [id_service], onDelete: Cascade, onUpdate: Cascade)
   request_car      car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
   
   request_customer customer @relation(fields: [id_customer], references: [id_customer], onDelete: Cascade, onUpdate: Cascade)
 
-  request_service special_service @relation(fields: [id_service], references: [id_service])
+  
 
 }
 
@@ -85,7 +86,7 @@ model road_map {
   traveled_km     Decimal
   date            DateTime
   road_map_car    car      @relation(fields: [id_car], references: [id_car], onDelete: Cascade, onUpdate: Cascade)
-  road_map_service_performed service_performed ?
+  road_map_service_performed service_performed []
 }
 
 
@@ -106,7 +107,7 @@ model planned_service {
   pickup_time      DateTime
   id_tourist_group Int
   service_group tourist_group @relation(fields: [id_tourist_group], references: [id_tourist_group])
-  planned_service_service_performed service_performed ?
+  planned_service_service_performed service_performed[]
 }
 
 model special_service {
@@ -115,7 +116,8 @@ model special_service {
   ending_date     DateTime
   traveled_km     Decimal
   contract_number Int
-  service_request request?
+  id_request Int
+  service_request request []
 }
 
 
@@ -140,8 +142,8 @@ model user {
 
 model service_performed{
   id_service_performed Int @id @default(autoincrement())
-  id_service Int @unique
-id_road_map Int @unique
+  id_service Int 
+id_road_map Int 
   service_performed_road_map road_map @relation(fields: [id_road_map], references: [id_road_map], onDelete: Cascade, onUpdate: Cascade)
   service_performed_planned_service planned_service @relation(fields: [id_service], references: [id_service] ,onDelete: Cascade, onUpdate: Cascade )
 }
