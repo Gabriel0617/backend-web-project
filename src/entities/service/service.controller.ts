@@ -13,7 +13,7 @@ export class ServiceController {
   createService(@Body(new ServicePipe()) data: CreateServiceDTO) {
     if ('pickup_time' in data) {
       return this.serviceService.createPlannedService(data as CreatePlannedServiceDTO)
-    } else {
+    } else if ('traveled_km' in data) {
       return this.serviceService.createSpecialService(data as CreateSpecialServiceDTO)
     }
   }
