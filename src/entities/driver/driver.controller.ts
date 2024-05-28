@@ -59,7 +59,7 @@ export class DriverController {
     return this.driverService.deleteReserverDriverById(id_driver);
   }
 
-
+  @UseGuards(JwtAuthGuard)
   @Get('drivers/ByDistrict')
   getAllDriverByDistrict(){
     return this.driverService.findAllDriversByDistrict();
