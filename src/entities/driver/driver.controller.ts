@@ -35,7 +35,11 @@ export class DriverController {
 
     return this.driverService.findAllReserverDrivers();
   }
-
+  @UseGuards(JwtAuthGuard)
+  @Get('AllDistricts')
+  getAllDistricts(){
+    return this.driverService.findAllDistricts();
+  }
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   getDriverById(@Param('id', ParseIntPipe) id_driver: number) {
@@ -68,10 +72,7 @@ export class DriverController {
     return this.driverService.findAllDriversByDistrict(district);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('AllDistricts')
-  getAllDistricts(){
-    return this.driverService.findAllDistricts();
-  }
+
+  
 
 }
