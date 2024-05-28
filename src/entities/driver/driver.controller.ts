@@ -48,9 +48,15 @@ export class DriverController {
     }
   }
   @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  deleteDriverById(@Param('id', ParseIntPipe) id_driver: number, @Body() data: CreateDriverDTO) {
-    return this.driverService.deleteDriverById(id_driver);
+  @Delete(':id/permanent')
+  deletePermanentDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deletePermanentDriverById(id_driver);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id/reserver')
+  deleteReserverDriverById(@Param('id', ParseIntPipe) id_driver: number) {
+    return this.driverService.deleteReserverDriverById(id_driver);
   }
 
 
