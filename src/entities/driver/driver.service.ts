@@ -134,32 +134,25 @@ async findAllReserverDrivers(){
     return complete_reserver_drivers;
 }
 
-async findAllDriversByDistrict() {
+async findAllDriversByDistrict(district : string) {
   
-  const districts = await this.prismaService.driver.findMany({select: {district : true}})
 
-  
-  let result = {};
 
-  
-  for (let district of districts) {
-  
     const drivers = await this.prismaService.driver.findMany({
-      where: { district: district.district },
+      where: { district },
       orderBy: { driver_name: 'asc' },
+      select : {
+        driver_name : true,
+        driver_dni : true,
+        address: true,
+        phone_number : true    
+      }
     });
 
    
-    result[district.district] = drivers;
+  return drivers
   }
 
-  
-  const finalResult = Object.entries(result).map(([district, drivers]) => ({
-    district,
-    drivers,
-  }));
-
-  return finalResult;
 }
 
 
@@ -172,4 +165,4 @@ async findAllDriversByDistrict() {
 // }
 
 
-}
+

@@ -21,6 +21,9 @@ export class DriverController {
       return this.driverService.createReserverDriver(data as CreateReserverDriverDTO)
     }
   }
+
+
+
 @UseGuards(JwtAuthGuard)
   @Get('permanent')
   getAllPermanentDrivers() {
@@ -60,8 +63,8 @@ export class DriverController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('drivers/ByDistrict')
-  getAllDriverByDistrict(){
-    return this.driverService.findAllDriversByDistrict();
+  @Get(':district/drivers')
+  getAllDriverByDistrict(@Param('district') district: string){
+    return this.driverService.findAllDriversByDistrict(district);
   }
 }
