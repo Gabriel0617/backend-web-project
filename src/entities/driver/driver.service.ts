@@ -163,4 +163,13 @@ async findAllDriversByDistrict() {
 }
 
 
+// async findAllDriversByTouristGroup(id_tourist_group : number){
+//   const planned_services_ids = await this.prismaService.planned_service.findMany({
+//     where: {id_tourist_group}, select:{id_service:true}
+// })
+
+// const services_performed_ids = planned_services_ids.map(  id_service =>   this.prismaService.service_performed.findUnique({where : {id_service}))
+// }
+
+
 }
