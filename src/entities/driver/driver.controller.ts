@@ -67,4 +67,11 @@ export class DriverController {
   getAllDriverByDistrict(@Param('district') district: string){
     return this.driverService.findAllDriversByDistrict(district);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('AllDistricts')
+  getAllDistricts(){
+    return this.driverService.findAllDistricts();
+  }
+
 }

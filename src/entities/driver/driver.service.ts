@@ -153,8 +153,14 @@ async findAllDriversByDistrict(district : string) {
   return drivers
   }
 
+
+async findAllDistricts(){
+  const districts = await this.prismaService.driver.findMany({select: {district : true}})
+
+  return districts
 }
 
+}
 
 // async findAllDriversByTouristGroup(id_tourist_group : number){
 //   const planned_services_ids = await this.prismaService.planned_service.findMany({
