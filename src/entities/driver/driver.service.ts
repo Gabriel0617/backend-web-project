@@ -155,7 +155,10 @@ async findAllDriversByDistrict(district : string) {
 
 
 async findAllDistricts(){
-  const districts = await this.prismaService.driver.findMany({select: {district : true}})
+  const districts = await this.prismaService.driver.findMany({
+      select:  {district : true},
+      distinct : 'district'
+    });
 
   return districts
 }
