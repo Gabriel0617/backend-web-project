@@ -163,15 +163,92 @@ async findAllDistricts(){
   return districts
 }
 
+
+
+async findAllDriversByTouristGroup(id_tourist_group : number){
+
+
+
+  const planned_services_object = await this.prismaService.planned_service.findMany({
+    where: {id_tourist_group}, select:{id_service:true}
+})
+
+console.log("Planned services objects" + planned_services_object.length);
+
+
+ const planned_services_ids = []
+
+for(let i = 0; i < planned_services_object.length; i++){
+  planned_services_ids.push(planned_services_object[i].id_service)
+}
+console.log("Planned services ids" + planned_services_ids.length);
+const allServicesPerformed = await this.prismaService.service_performed.findMany();
+console.log("ServicesPerformed" + allServicesPerformed.length);
+
+const filteredServicesPerformed = allServicesPerformed.filter(servicePerformed =>
+  planned_services_ids.includes(servicePerformed.id_service)
+);
+
+console.log("Filtered Services Performed" + filteredServicesPerformed.length);
+
+const road_map_ids = [];
+
+for(let i = 0; i < filteredServicesPerformed.length; i++){
+  road_map_ids.push(filteredServicesPerformed[i].id_road_map)
 }
 
-// async findAllDriversByTouristGroup(id_tourist_group : number){
-//   const planned_services_ids = await this.prismaService.planned_service.findMany({
-//     where: {id_tourist_group}, select:{id_service:true}
-// })
+console.log("RoadMapIds" + road_map_ids.length);
 
-// const services_performed_ids = planned_services_ids.map(  id_service =>   this.prismaService.service_performed.findUnique({where : {id_service}))
-// }
+const road_maps = await this.prismaService.road_map.findMany();
+
+console.log("RoadMaps" + road_maps.length);
+
+const filteredRoadMaps = road_maps.filter(road_map =>
+  road_map_ids.includes(road_map.id_road_map)
+);
+
+console.log("FilteredRoadMaps" + filteredRoadMaps.length);
+
+const carIds = []  
+
+for(let i = 0; i < filteredRoadMaps.length; i++){
+  carIds.push(filteredRoadMaps[i].id_car)
+}
+
+console.log("Car Ids" + carIds.length);
+
+const permanent_drivers = await this.prismaService.permanent_driver.findMany();
+
+console.log("Permanent Drivers" + permanent_drivers.length);
+
+const filteredPermanentDrivers = permanent_drivers.filter(permanent_driver => 
+  carIds.includes(permanent_driver.id_car)
+)
+
+console.log("filteredPermanentDrivers" + filteredPermanentDrivers.length);
+
+
+const drivers_id = []
+
+for(let i = 0; i < filteredPermanentDrivers.length; i++){
+  drivers_id.push(filteredPermanentDrivers[i].id_driver)
+}
+
+console.log("Drivers Ids" + drivers_id.length);
+
+const driverNames = []
+
+for(let i = 0; i < drivers_id.length; i++){
+ driverNames.push( await this.prismaService.driver.findUnique({where: {id_driver: drivers_id[i]}, select : {driver_name : true}}))
+}
+
+console.log("DriverNames" + driverNames.length);
 
 
 
+return driverNames;
+
+}
+
+
+}

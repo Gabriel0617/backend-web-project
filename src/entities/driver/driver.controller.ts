@@ -72,6 +72,12 @@ export class DriverController {
     return this.driverService.findAllDriversByDistrict(district);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get(':tourist_group/Tourist_group_drivers')
+  getAllDriversByTouristGroup(@Param('tourist_group', ParseIntPipe) tourist_group: number){
+    return this.driverService.findAllDriversByTouristGroup(tourist_group);
+  }
+
 
   
 
