@@ -65,7 +65,9 @@ export class TouristGroupService {
 
       let topCountries = topCountriesArray.map(entry => entry[0]);
 
-      return topCountries;
+      topCountriesArray.forEach(innerArray => innerArray.unshift('random'));
+
+      return topCountriesArray;
     }
   }
   

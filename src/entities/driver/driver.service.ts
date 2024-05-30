@@ -156,7 +156,10 @@ async findAllDriversByDistrict(district : string) {
 
 async findAllDistricts(){
   const districts = await this.prismaService.driver.findMany({
-      select:  {district : true},
+      select:  {id_driver: true
+        ,district : true,
+      },
+      
       distinct : 'district'
     });
 
@@ -239,7 +242,7 @@ console.log("Drivers Ids" + drivers_id.length);
 const driverNames = []
 
 for(let i = 0; i < drivers_id.length; i++){
- driverNames.push( await this.prismaService.driver.findUnique({where: {id_driver: drivers_id[i]}, select : {driver_name : true}}))
+ driverNames.push( await this.prismaService.driver.findUnique({where: {id_driver: drivers_id[i]}, select : {id_driver : true ,driver_name : true}}))
 }
 
 console.log("DriverNames" + driverNames.length);
