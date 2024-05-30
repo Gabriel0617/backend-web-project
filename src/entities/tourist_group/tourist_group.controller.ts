@@ -37,6 +37,12 @@ export class TouristGroupController {
     getTouristGroupIdbyNumber(@Param('number', ParseIntPipe) group_number: number) {
         return this.touristGroupService.findTouristGroupIdByNumber(group_number);
     }
+    
+    @UseGuards(JwtAuthGuard)
+    @Get('touristGroupCountries/TopThree')
+    getTopThreeTouristCountries() {
+        return this.touristGroupService.findTopThreeTouristGroupCountries();
+    }
     @UseGuards(JwtAuthGuard)
     @Get(':id')
     getTouristGroupById(@Param('id', ParseIntPipe) id_tourist_group: number) {
@@ -52,4 +58,6 @@ export class TouristGroupController {
     updateTouristGroupById(@Param('id', ParseIntPipe) id_tourist_group: number, @Body() data: CreateTouristGroupDTO) {
         this.touristGroupService.updateTouristGroupById(id_tourist_group, data)
     }
+
+
 }

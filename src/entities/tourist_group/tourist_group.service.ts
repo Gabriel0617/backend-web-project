@@ -41,6 +41,32 @@ export class TouristGroupService {
     async findTouristGroupIdByNumber(group_number : number){
       return this.prismaService.tourist_group.findUnique({where: {group_number}, select :{id_tourist_group : true} });
     }
+
+    async findTopThreeTouristGroupCountries(){
+      const tourist_groups = await this.prismaService.tourist_group.findMany();
+
+      const countries = tourist_groups.map(group => group.group_country)
+
+      let countries_counter = new Map<string, number>();
+
+      for(const country of countries){
+        if(!countries_counter.has(country)){
+          countries_counter.set(country, 1)
+        }else{
+          countries_counter.set(country, countries_counter.get(country)+1)
+        }
+      }
+
+      let countriesArray = Array.from(countries_counter.entries());
+
+      countriesArray.sort((a, b) => b[1] - a[1]);
+
+      const topCountriesArray = countriesArray.slice(0,3);
+
+      let topCountries = topCountriesArray.map(entry => entry[0]);
+
+      return topCountries;
+    }
   }
   
 
