@@ -32,6 +32,12 @@ export class BusBrandController {
     return this.busBrandService.findAllBrandNames();
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('allBrands/carCount')
+  getAllBrandsCarCount(){
+    return this.busBrandService.findAmountOfCarsPerBusBrand();
+  }
+
 
   @UseGuards(JwtAuthGuard)
   @Get(':id/full')

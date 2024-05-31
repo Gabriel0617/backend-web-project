@@ -67,4 +67,36 @@ export class BusBrandService {
     });
   }
 
+async findAmountOfCarsPerBusBrand (){
+
+
+  const find_cars_brands = await this.prismaService.car.findMany({select : {brand_id : true}});
+
+  const car_brand_ids: number[] = []
+
+  for(const brand of find_cars_brands){
+    car_brand_ids.push(brand.brand_id)
+  }
+
+  const allBrands = await this.prismaService.bus_brand.findMany();
+
+  const filteredBrands = allBrands.filter(brand => car_brand_ids.includes(brand.id_brand))
+
+  let brand_map = new Map<string, number>();
+
+  for(const brand of filteredBrands){
+      if(!brand_map.has(brand.brand_name)){
+        brand_map.set(brand.brand_name, 1)
+      }else{
+        brand_map.set(brand.brand_name, brand_map.get(brand.brand_name)+1)
+      }
+     }
+
+     let brandNamesCountArray = Array.from(brand_map.entries());
+
+     brandNamesCountArray.forEach(innerArray => innerArray.unshift('random'));
+
+     return brandNamesCountArray;
+}
+  
 }
