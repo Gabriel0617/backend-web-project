@@ -78,17 +78,25 @@ async findAmountOfCarsPerBusBrand (){
     car_brand_ids.push(brand.brand_id)
   }
 
-  const allBrands = await this.prismaService.bus_brand.findMany();
+  const car_brand_name = []
+  for(const car_brand_id of car_brand_ids){
+    car_brand_name.push((await this.prismaService.bus_brand.findUnique({where: {id_brand: car_brand_id}, select: {brand_name: true}})).brand_name)
+  }
 
-  const filteredBrands = allBrands.filter(brand => car_brand_ids.includes(brand.id_brand))
+  
+  
+
+ 
 
   let brand_map = new Map<string, number>();
 
-  for(const brand of filteredBrands){
-      if(!brand_map.has(brand.brand_name)){
-        brand_map.set(brand.brand_name, 1)
+  for(const brand of car_brand_name){
+      if(!brand_map.has(brand)){
+        brand_map.set(brand, 1)
       }else{
-        brand_map.set(brand.brand_name, brand_map.get(brand.brand_name)+1)
+        brand_map.set(brand, brand_map.get(brand)+1)
+      
+      
       }
      }
 
